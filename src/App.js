@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import data from './Components/data';
+import  Movielist  from './Components/Movielist';
+import { useState } from 'react';
+import Adding from './Components/Adding';
+import Search from './Components/Search';
+
 
 function App() {
+  const [newData,setNewData] = useState(data)
+
+  const AddingMovie=(newMovie)=>{
+    setNewData([...newData,newMovie])
+  }
+
+
+const [movieName,setMovieName] = useState('')
+const [ratingValue,setRatingValue] = useState(0)
+
+console.log(movieName)
+console.log(ratingValue)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search ratingValue={ratingValue} setMovieName={setMovieName} setRatingValue={setRatingValue} />
+      <Adding Adding={AddingMovie}/>
+      <Movielist data={newData.filter((el)=>el.title.trim().toLocaleLowerCase().includes(movieName) && el.rating>=ratingValue)}/>
     </div>
   );
 }
