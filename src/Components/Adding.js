@@ -4,13 +4,17 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { Rating } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
+
 
 function Adding({Adding}) {
+    
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const [newMovie,setNewMovie] = useState({
+      id : uuidv4(),
       title : '',
       posterUrl :'',
       description : '',
@@ -24,9 +28,10 @@ function Adding({Adding}) {
       Adding(newMovie);
       handleClose();
     }
-
+ 
     return (
       <div>
+
          <Button variant="primary" onClick={handleShow}>
         Add Movie
       </Button>
@@ -85,6 +90,7 @@ function Adding({Adding}) {
           </Button>
         </Modal.Footer>
       </Modal>
+
       </div>
     )
   }

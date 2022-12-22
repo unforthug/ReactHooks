@@ -6,6 +6,7 @@ import  Movielist  from './Components/Movielist';
 import { useState } from 'react';
 import Adding from './Components/Adding';
 import Search from './Components/Search';
+import { Route, Routes } from 'react-router-dom';
 
 
 function App() {
@@ -18,14 +19,22 @@ function App() {
 
 const [movieName,setMovieName] = useState('')
 const [ratingValue,setRatingValue] = useState(0)
+ console.log(data);
 
-console.log(movieName)
-console.log(ratingValue)
   return (
     <div className="App">
       <Search ratingValue={ratingValue} setMovieName={setMovieName} setRatingValue={setRatingValue} />
+      <br/>
       <Adding Adding={AddingMovie}/>
-      <Movielist data={newData.filter((el)=>el.title.trim().toLocaleLowerCase().includes(movieName) && el.rating>=ratingValue)}/>
+      <br/>
+      <br/>
+      <Movielist data={newData.filter((el)=>el.title.trim().toLocaleLowerCase().includes(movieName) && el.rating>=ratingValue)} />
+      
+      {/* <Routes>
+         <Route path='/' element={<Search ratingValue={ratingValue} setMovieName={setMovieName} setRatingValue={setRatingValue} />}/>
+         <Route path='/' element={<Adding Adding={AddingMovie}/>} />
+         <Route path='/' element={<Movielist data={newData.filter((el)=>el.title.trim().toLocaleLowerCase().includes(movieName) && el.rating>=ratingValue)} />}/>
+      </Routes> */}
     </div>
   );
 }

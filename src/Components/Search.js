@@ -1,7 +1,8 @@
 
 import { Form } from "react-bootstrap";
 import { Rating } from "@mui/material";
-import { useState } from "react";
+
+
 function Search({setRatingValue,setMovieName,ratingValue}) {
   
 
